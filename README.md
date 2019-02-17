@@ -109,8 +109,6 @@ changed: [10.1.1.250]
 
 PLAY RECAP **************************************************************************************************************************
 10.1.1.250                 : ok=3    changed=1    unreachable=0    failed=0
-
-➜  ansible_cisco_show_run git:(master) ✗
 ```
 > The output file is within this repository if you want to take a look.  No rocket science there though :smile:
 
