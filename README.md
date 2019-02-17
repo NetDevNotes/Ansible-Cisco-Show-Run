@@ -15,8 +15,8 @@
 4. On my workstation, performed a `git clone https://github.com/NetDevNotes/ansible_cisco_show_run.git`
 5. The `git clone` downloaded the folder and README.md to my local workstation, cd into the folder:
 ```
-➜  ansible git:(master) ✗ cd ansible_cisco_show_run
-➜  ansible_cisco_show_run git:(master) ✗ pwd
+# cd ansible_cisco_show_run
+# pwd
 /Users/nico/scripts/ansible/ansible_cisco_show_run
 ```
 6. I created an inventory file (called `hosts`) which is more complex than it needs to be, but I wanted to learn how to use groups and groups-of-groups.  The bit to understand here though is that I defined host vars `[switch:vars]` for the username and password, amoung some other vars we need to connect to the switch successfully:
@@ -79,7 +79,7 @@ ansible_ssh_pass=12121212
 
 I have to put in the workstations sudo password at the moment, but I'll fix that later..
 ```
-➜  ansible_cisco_show_run git:(master) sudo ansible-playbook showrun.yml
+# sudo ansible-playbook showrun.yml
 Password:
 
 PLAY [Backup show run (enable mode commands)] ***************************************************************************************
