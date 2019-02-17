@@ -6,40 +6,6 @@
 * The playbook uses the `ios_command` Ansible module.
 * The password var is in clear text!
 
-```
-➜  ansible_cisco_show_run git:(master) sudo ansible-playbook showrun.yml
-Password:
-
-PLAY [Backup show run (enable mode commands)] ***************************************************************************************
-
-TASK [run enable level commands] ****************************************************************************************************
-ok: [10.1.1.250]
-
-TASK [debug] ************************************************************************************************************************
-ok: [10.1.1.250] => {
-    "print_output.stdout_lines": [
-        [
-            "Building configuration...",
-            "",
-            "Current configuration : 3307 bytes",
-            "!",
-            "version 12.2",
-            "no service pad",
-            "service timestamps debug datetime msec",
-            "service timestamps log datetime msec",
-            "service password-encryption",
-            "!",
-            "hostname SW1-2960",
-```
-```
-TASK [save output to a file] ********************************************************************************************************
-changed: [10.1.1.250]
-
-PLAY RECAP **************************************************************************************************************************
-10.1.1.250                 : ok=3    changed=1    unreachable=0    failed=0
-
-➜  ansible_cisco_show_run git:(master) ✗
-```
 # How did I create this play?
 
 1. Created a new repository called *ansible_cisco_show_run* at [GitHub](www.github.com)
@@ -53,7 +19,7 @@ PLAY RECAP *********************************************************************
 ➜  ansible_cisco_show_run git:(master) ✗ pwd
 /Users/nico/scripts/ansible/ansible_cisco_show_run
 ```
-6. I created an inventory file (calles `hosts`)which is much more complex than it needs to be, but I wanted to learn how to use groups and groups-of-groups.  The key here is that I defined host vars for the username and password, and some other vars we need to connect to the switch:
+6. I created an inventory file (calles `hosts`) which is more complex than it needs to be, but I wanted to learn how to use groups and groups-of-groups.  The key here is that I defined host vars `[switch:vars]` for the username and password, amoung some other vars we need to connect to the switch sucessfully:
 ```
 [all:vars]
 # These defaults can be overridden for any group in the [group:vars] section
@@ -106,9 +72,43 @@ ansible_ssh_pass=12121212
 
 # Commands to run:
 #1) sudo ansible-playbook showrun.yml
+```
+# Command to Run the Play
+
+`sudo ansible-playbook showrun.yml`
+
+I have to put in the local workstations sudo password at the moment, but I'll fix that.
+```
+➜  ansible_cisco_show_run git:(master) sudo ansible-playbook showrun.yml
+Password:
+
+PLAY [Backup show run (enable mode commands)] ***************************************************************************************
+
+TASK [run enable level commands] ****************************************************************************************************
+ok: [10.1.1.250]
+
+TASK [debug] ************************************************************************************************************************
+ok: [10.1.1.250] => {
+    "print_output.stdout_lines": [
+        [
+            "Building configuration...",
+            "",
+            "Current configuration : 3307 bytes",
+            "!",
+            "version 12.2",
+            "no service pad",
+            "service timestamps debug datetime msec",
+            "service timestamps log datetime msec",
+            "service password-encryption",
+            "!",
+            "hostname SW1-2960",
+```
+```
+TASK [save output to a file] ********************************************************************************************************
+changed: [10.1.1.250]
+
+PLAY RECAP **************************************************************************************************************************
+10.1.1.250                 : ok=3    changed=1    unreachable=0    failed=0
+
 ➜  ansible_cisco_show_run git:(master) ✗
 ```
-
-
-
-
