@@ -26,4 +26,4 @@
 # http://docs.ansible.com/ansible/latest/ios_command_module.html
 
 # Commands to run: 
-#1) ansible-playbook shver3.yml -u admin -k
+#1) sudo ansible-playbook showrun.yml
