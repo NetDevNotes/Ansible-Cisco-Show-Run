@@ -1,6 +1,6 @@
 Building configuration...
 
-Current configuration : 3310 bytes
+Current configuration : 3307 bytes
 !
 version 12.2
 no service pad
@@ -110,7 +110,7 @@ ip http server
 ip http secure-server
 snmp-server community read RO
 snmp-server community write RW
-snmp-server location Edithvale
+snmp-server location London
 snmp-server contact Nico
 !
 control-plane
