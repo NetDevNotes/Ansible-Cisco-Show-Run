@@ -1,6 +1,3 @@
-[all:vars]
-# These defaults can be overridden for any group in the [group:vars] section
-
 [ios:children]
 # This is a group-of-groups called ios
 switch
@@ -22,11 +19,3 @@ ansible_ssh_pass=12121212
 [asa]
 # This is the asa group and also a child of the ios group
 10.1.1.253
-
-[iosxe]
-# This is a Cisco IOS XR rotuer in Cisco DevNet Cloud (NETCONF/YANG)
-ios-xe-mgmt.cisco.com:8181 
-
-[imac]
-# This is my Automation Management Node
-10.1.1.1
