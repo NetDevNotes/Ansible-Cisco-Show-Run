@@ -112,3 +112,4 @@ PLAY RECAP *********************************************************************
 
 ➜  ansible_cisco_show_run git:(master) ✗
 ```
+> The output file is within this repository if you want to take a look.  No rocket science there though :smile:
