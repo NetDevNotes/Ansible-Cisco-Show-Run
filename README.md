@@ -21,9 +21,6 @@
 ```
 6. I created an inventory file (called `hosts`) which is more complex than it needs to be, but I wanted to learn how to use groups and groups-of-groups.  The bit to understand here though is that I defined host vars `[switch:vars]` for the username and password, amoung some other vars we need to connect to the switch successfully:
 ```
-[all:vars]
-# These defaults can be overridden for any group in the [group:vars] section
-
 [ios:children]
 # This is a group-of-groups called ios
 switch
@@ -41,6 +38,10 @@ ansible_become_method=enable
 ansible_network_os=ios
 ansible_user=admin
 ansible_ssh_pass=12121212
+
+[asa]
+# This is the asa group and also a child of the ios group
+10.1.1.253
 ```
 7. I created a simple playbook `showrun.yml` using the ios_command ansible module:
 ```
