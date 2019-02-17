@@ -1,10 +1,10 @@
-# Ansible Pefroming a Show Run on a Cisco Switch :musical_keyboard:
+# Ansible Pefroming a Show Run on a Cisco Switch 
 
 * This play performs a `show run` on a cisco switch and outputs the config to a text file. 
 * The inventory file uses groups-of-groups but we are only interested in the switch in this play.
 * The inventrory file uses group vars to define key value pairs for passing through the username and password.
 * The playbook uses the `ios_command` Ansible module.
-* The password var is in clear text!
+* The password var is in clear text atm!
 
 # How did I create this play?
 
@@ -19,7 +19,7 @@
 ➜  ansible_cisco_show_run git:(master) ✗ pwd
 /Users/nico/scripts/ansible/ansible_cisco_show_run
 ```
-6. I created an inventory file (calles `hosts`) which is more complex than it needs to be, but I wanted to learn how to use groups and groups-of-groups.  The key here is that I defined host vars `[switch:vars]` for the username and password, amoung some other vars we need to connect to the switch sucessfully:
+6. I created an inventory file (calles `hosts`) which is more complex than it needs to be, but I wanted to learn how to use groups and groups-of-groups.  The bit to understnad here though is that I defined host vars `[switch:vars]` for the username and password, amoung some other vars we need to connect to the switch sucessfully:
 ```
 [all:vars]
 # These defaults can be overridden for any group in the [group:vars] section
@@ -77,7 +77,7 @@ ansible_ssh_pass=12121212
 
 `sudo ansible-playbook showrun.yml`
 
-I have to put in the local workstations sudo password at the moment, but I'll fix that.
+I have to put in the workstations sudo password at the moment, but I'll fix that later..
 ```
 ➜  ansible_cisco_show_run git:(master) sudo ansible-playbook showrun.yml
 Password:
@@ -113,3 +113,5 @@ PLAY RECAP *********************************************************************
 ➜  ansible_cisco_show_run git:(master) ✗
 ```
 > The output file is within this repository if you want to take a look.  No rocket science there though :smile:
+
+:musical_keyboard:
