@@ -1,0 +1,130 @@
+Building configuration...
+
+Current configuration : 3310 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname SW1-2960
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$T/Oy$21QoMWTFNGWoiX0/4VsHl/
+!
+username admin privilege 15 password 7 06575D701E1F5B4857
+aaa new-model
+!
+!
+!
+!
+!
+aaa session-id common
+system mtu routing 1500
+ip subnet-zero
+!
+!
+ip domain-name nwten.net
+ip name-server 8.8.8.8
+!
+!
+crypto pki trustpoint TP-self-signed-2135872384
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2135872384
+ revocation-check none
+ rsakeypair TP-self-signed-2135872384
+!
+!
+crypto pki certificate chain TP-self-signed-2135872384
+ certificate self-signed 01
+  3082024A 308201B3 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32313335 38373233 3834301E 170D3933 30333031 30303030 
+  35355A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 31333538 
+  37323338 3430819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100CB58 D01AF983 1BD9D60D 33DDD3AB 1C275450 94E550BB E8852EDB C2060028 
+  9B0CFF88 E2C43E72 931CF5ED BB8BACD9 C8BDA875 0E7E3271 3350C630 282FBE21 
+  1D3D093D 6878BDE3 E9F236D3 71FDAB4E 7DCE832F 8B4A3C3B 0F906455 9B68C421 
+  27BCA9DE 5210C055 0B96B1F0 C8E1C0B6 EC094516 7F756067 DF114CF9 E60F6EF5 
+  17750203 010001A3 72307030 0F060355 1D130101 FF040530 030101FF 301D0603 
+  551D1104 16301482 12535731 2D323936 302E6E77 74656E2E 6E657430 1F060355 
+  1D230418 30168014 DC42A18F 64D08DC2 5DF2BAEE EC0C2CAF 09CDAC29 301D0603 
+  551D0E04 160414DC 42A18F64 D08DC25D F2BAEEEC 0C2CAF09 CDAC2930 0D06092A 
+  864886F7 0D010104 05000381 81005215 38CD1A97 6681785B E39C00D3 1D9D0E47 
+  5BAE31C9 E9390E1F 02801D9E AE99561E BD38073A 705EF4FA 6EFCBA6E 2FB18DE2 
+  9637D21F 7CEDA4DF E3446707 3D081A4E F806C1AA F8ADB067 170A11C2 879D8E4E 
+  1DF1AA5F 144D65E6 74BF3CA3 7ECB3C8E 013BA4EE 2D6ED6A1 AF69CFE1 33450EDB 
+  8D03B9B3 5B296E78 9B05E08E 9EDF
+  quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+!
+interface FastEthernet0/1
+ description RASPBERRY PI
+!
+interface FastEthernet0/2
+ switchport mode access
+ switchport port-security
+ switchport port-security aging time 2
+ switchport port-security violation restrict
+ switchport port-security aging type inactivity
+ macro description cisco-desktop
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+ description F0/8 > E0/0 ASA
+!
+interface GigabitEthernet0/1
+ description OPTUS ROUTER G0/1
+!
+interface Vlan1
+ ip address 10.1.1.250 255.255.255.0
+ no ip route-cache
+!
+ip default-gateway 10.1.1.254
+ip http server
+ip http secure-server
+snmp-server community read RO
+snmp-server community write RW
+snmp-server location Edithvale
+snmp-server contact Nico
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ transport input ssh
+line vty 5 15
+ exec-timeout 0 0
+ privilege level 15
+ transport input ssh
+!
+end
