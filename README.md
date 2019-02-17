@@ -4,5 +4,6 @@
 * The inventory file uses groups-of-groups but we are only interested in the switch in this play.
 * The inventrory file uses group vars to define key value pairs for passing through the username and password.
 * The playbook uses the `ios_command` Ansible module.
+* The password var is in clear text!
 
 
