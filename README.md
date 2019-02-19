@@ -17,7 +17,7 @@
 ```
 # cd ansible_cisco_show_run
 # pwd
-/Users/nico/scripts/ansible/ansible_cisco_show_run
+~/scripts/ansible/ansible_cisco_show_run
 ```
 6. I created an inventory file (called `hosts`) which is more complex than it needs to be, but I wanted to learn how to use groups and groups-of-groups.  The bit to understand here though is that I defined host vars `[switch:vars]` for the username and password, amoung some other vars we need to connect to the switch successfully:
 ```
@@ -54,7 +54,8 @@ ansible_ssh_pass=12121212
   tasks:
     - name: run enable level commands
       ios_command:
-        authorize: yes
+ # Use Become
+ #       authorize: yes
         commands:
           - show run
 
