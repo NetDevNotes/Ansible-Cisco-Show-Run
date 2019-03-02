@@ -1,4 +1,4 @@
-# Ansible Perfoming a Show Run on a Cisco Switch 
+# Ansible Perfoming a Show Run on a Cisco Switch :coffee:
 
 * This play performs a `show run` on a Cisco switch and outputs the config to a text file. 
 * The inventory file uses groups-of-groups but we are only interested in the switch in this play.
